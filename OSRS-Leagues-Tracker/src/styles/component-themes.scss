@@ -1,7 +1,9 @@
 @import '../app/dashboard/tile/tile.component';
 @import '../app/toolbar/toolbar.component';
+@import '../app/task-tracker/task-table/task-table.component';
 
 @mixin component-themes($theme) {
   @include tile-theme($theme);
+  @include table-theme($theme);
   //@include menu-theme($theme);
 }

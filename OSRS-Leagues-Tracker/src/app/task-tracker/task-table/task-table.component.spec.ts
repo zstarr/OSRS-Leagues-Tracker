@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginMenuComponent } from './login-menu.component';
+import { TaskTableComponent } from './task-table.component';
 
-describe('LoginMenuComponent', () => {
-  let component: LoginMenuComponent;
-  let fixture: ComponentFixture<LoginMenuComponent>;
+describe('TaskTableComponent', () => {
+  let component: TaskTableComponent;
+  let fixture: ComponentFixture<TaskTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginMenuComponent ]
+      declarations: [ TaskTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginMenuComponent);
+    fixture = TestBed.createComponent(TaskTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

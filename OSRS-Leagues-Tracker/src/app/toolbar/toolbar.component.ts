@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
+import { ThemeService } from '../core/services/theme.service';
 
 import { Observable } from 'rxjs';
 
@@ -12,10 +12,18 @@ import { Observable } from 'rxjs';
 export class ToolbarComponent implements OnInit {
 
 
-  constructor() {}
+  isDarkTheme: Observable<boolean>;
+  
+  constructor(private themeService: ThemeService) {
+    this.isDarkTheme = this.themeService.isDarkTheme;
+  }
 
   ngOnInit() {
     
+  }
+
+  toggleDarkTheme(checked: boolean) {
+    this.themeService.setDarkTheme(checked);
   }
 
 }

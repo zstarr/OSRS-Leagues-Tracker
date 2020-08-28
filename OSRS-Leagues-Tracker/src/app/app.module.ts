@@ -5,8 +5,9 @@ import { CoreModule } from './core/core.module';
 import { ToolbarModule } from './toolbar/toolbar.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AppComponent } from './app.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
+import { MatTableModule } from '@angular/material/table';
+import { TaskTrackerModule } from "./task-tracker/task-tracker.module";
 
 @NgModule({
   declarations: [
@@ -16,8 +17,9 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     ToolbarModule,
     DashboardModule,
-    FontAwesomeModule,
-    AppRoutingModule    
+    AppRoutingModule,
+    MatTableModule,
+    TaskTrackerModule
   ],
   bootstrap: [AppComponent]
 })

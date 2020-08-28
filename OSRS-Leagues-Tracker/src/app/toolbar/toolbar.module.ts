@@ -7,8 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LoginMenuComponent } from "../login-menu/login-menu.component";
 import { ToolbarComponent } from './toolbar.component';
 import { RouterModule } from '@angular/router';
 
@@ -19,10 +17,9 @@ import { RouterModule } from '@angular/router';
     MatSlideToggleModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule,
-    FontAwesomeModule,        
+    MatMenuModule      
   ],
-  declarations: [ToolbarComponent, LoginMenuComponent],
+  declarations: [ToolbarComponent],
   exports: [ToolbarComponent],
 })
 export class ToolbarModule {}
