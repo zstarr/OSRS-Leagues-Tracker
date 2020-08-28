@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "StarrDashboard": {
+    "OSRS-Leagues-Tracker": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/StarrDashboard",
+            "outputPath": "dist/OSRS-Leagues-Tracker",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "StarrDashboard:build"
+            "browserTarget": "OSRS-Leagues-Tracker:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "StarrDashboard:build:production"
+              "browserTarget": "OSRS-Leagues-Tracker:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "StarrDashboard:build"
+            "browserTarget": "OSRS-Leagues-Tracker:build"
           }
         },
         "test": {
@@ -114,15 +114,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "StarrDashboard:serve"
+            "devServerTarget": "OSRS-Leagues-Tracker:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "StarrDashboard:serve:production"
+              "devServerTarget": "OSRS-Leagues-Tracker:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "StarrDashboard"
+  "defaultProject": "OSRS-Leagues-Tracker"
 }

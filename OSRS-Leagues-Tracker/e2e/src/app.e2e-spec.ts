@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('StarrDashboard app is running!');
+    expect(page.getTitleText()).toEqual('OSRS-Leagues-Tracker app is running!');
   });
 
   afterEach(async () => {

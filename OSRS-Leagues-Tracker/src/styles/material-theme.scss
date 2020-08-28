@@ -21,6 +21,6 @@ $theme: mat-light-theme($primary, $accent, $warn);
 .light-theme {
   $light-theme: mat-dark-theme($primary, $accent, $warn);
 
-  @include angular-material-theme($theme);
+  //@include angular-material-theme($theme);
   @include component-themes($theme);
 }

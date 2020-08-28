@@ -9,7 +9,7 @@ import { ThemeService } from './core/services/theme.service'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'StarrDashboard';
+  title = 'Leagues Tracker';
 
   isDarkTheme: Observable<boolean>;
 
