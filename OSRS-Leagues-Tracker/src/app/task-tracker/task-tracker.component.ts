@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { HiscoreResult } from './models/highscore.model';
 
 @Component({
   selector: 'app-task-tracker',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-tracker.component.scss']
 })
 export class TaskTrackerComponent implements OnInit {
+
+  hiscore: HiscoreResult;
 
   constructor() { }
 
