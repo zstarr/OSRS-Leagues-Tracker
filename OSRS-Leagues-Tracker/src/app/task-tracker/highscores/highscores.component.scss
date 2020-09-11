@@ -1,0 +1,47 @@
+@import "~@angular/material/theming";
+
+@mixin hiscore-theme($theme) {
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $background-color: mat-color($background, card);
+
+  body {
+    margin: 40px;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    grid-gap: 1px;
+    background-color: $background-color;
+  }
+  
+  .box {
+    background-color: $background-color;
+    border-radius: 5px;
+    img {
+      padding-right: 5px;
+      vertical-align: middle;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .name-form-field {
+    width: 150px;
+  }
+  .loading-spinner {
+    margin: 0 auto;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  .mat-form-field.mat-focused {
+    .mat-form-field-label {
+      color: white;
+    }
+  }
+  
+}
+

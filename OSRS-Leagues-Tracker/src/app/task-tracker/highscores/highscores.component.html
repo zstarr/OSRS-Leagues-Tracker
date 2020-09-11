@@ -1,0 +1,135 @@
+<mat-card>
+  <div>
+    <mat-form-field class="name-form-field" [formGroup]="this.hiscoreLookup">
+      <mat-label>Username</mat-label>
+      <input matInput type="text" formControlName="userName" maxLength="12" />
+    </mat-form-field>
+    <div class="wrapper" *ngIf="hiscore">
+      <div class="box">
+        <img src="./assets/skill-icons/attack.png" />{{ hiscore.attack.level }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/hitpoints.png" />{{
+          hiscore.hitpoints.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/mining.png" />{{ hiscore.mining.level }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/strength.png" />{{
+          hiscore.strength.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/agility.png" />{{
+          hiscore.agility.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/smithing.png" />{{
+          hiscore.smithing.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/defence.png" />{{
+          hiscore.defence.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/herblore.png" />{{
+          hiscore.herblore.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/fishing.png" />{{
+          hiscore.fishing.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/ranged.png" />{{ hiscore.ranged.level }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/thieving.png" />{{
+          hiscore.thieving.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/cooking.png" />{{
+          hiscore.cooking.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/prayer.png" />{{ hiscore.prayer.level }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/crafting.png" />{{
+          hiscore.crafting.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/firemaking.png" />{{
+          hiscore.firemaking.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/magic.png" />{{ hiscore.magic.level }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/fletching.png" />{{
+          hiscore.fletching.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/woodcutting.png" />{{
+          hiscore.woodcutting.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/runecraft.png" />{{
+          hiscore.runecraft.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/slayer.png" />{{ hiscore.slayer.level }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/farming.png" />{{
+          hiscore.farming.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/construction.png" />{{
+          hiscore.construction.level
+        }}
+      </div>
+      <div class="box">
+        <img src="./assets/skill-icons/hunter.png" />{{ hiscore.hunter.level }}
+      </div>
+    </div>
+    <div class="loading" *ngIf="loadingUser$.value">
+      <p>Loading hiscores...</p>
+      <mat-progress-spinner 
+        class="loading-spinner"
+        [color]="color"
+        [mode]="mode"
+      >
+      </mat-progress-spinner>
+      <p style="text-align: center">As you know, this can take awhile...</p>
+    </div>
+    <div *ngIf="userNotFound$.value &&  lastUserName">
+      <p>{{ lastUserName }} not found...</p>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="populateHighscores()"
+      *ngIf="
+        !this.hiscoreLookup.get('userName').value ||
+        this.hiscoreLookup.get('userName').value != hiscore?.player
+      "
+    >
+      Lookup
+    </button>
+  </div>
+</mat-card>
