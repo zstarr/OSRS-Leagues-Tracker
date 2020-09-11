@@ -1,9 +1,11 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ThemePalette } from '@angular/material/core';
 import { LeagueTask } from '../models/league-tasks.model';
 import { LeagueTaskArray } from '../models/league-tasks.data'
+import { HiscoreResult } from '../models/highscore.model';
+import { PointService } from '../services/points.service';
 
 
 @Component({
@@ -12,9 +14,11 @@ import { LeagueTaskArray } from '../models/league-tasks.data'
   styleUrls: ['./task-table.component.scss'],
 })
 export class TaskTableComponent implements OnInit {
-  constructor() {}
+  
+  @Input() hiscore: HiscoreResult;
+  @Input() pointsPerTask: number;
+  pointTotal: number;
 
-  ngOnInit(): void {}
   checkColor: ThemePalette = "warn";
   displayedColumns: string[] = [
     'select',
@@ -25,6 +29,18 @@ export class TaskTableComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<LeagueTask>(LeagueTaskArray);
   selection = new SelectionModel<LeagueTask>(true, []);
+
+  constructor(private pointService: PointService) {
+    this.pointService.sharedTotal.subscribe(total => this.pointTotal = total);
+  }
+
+  ngOnInit(): void {
+    this.selection.changed.subscribe(
+      (a) => {
+        this.pointService.nextPointTotal((a.added.length - a.removed.length) * this.pointsPerTask)
+      }
+    );
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {

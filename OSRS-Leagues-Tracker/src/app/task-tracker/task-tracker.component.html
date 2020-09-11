@@ -1,5 +1,8 @@
 <p>Welcome to task tracker!</p>
+<p>Point total: {{ pointTotal }}</p>
+<br>
+<p>Easy tasks are worth 10 points...</p>
 <div class="container">
-    <app-task-table></app-task-table>
+    <app-task-table [hiscore]='hiscore' [pointsPerTask]='10'></app-task-table>
     <app-highscores [hiscore]='hiscore'></app-highscores>
 </div>
