@@ -4,6 +4,7 @@
   $accent: map-get($theme, accent);
   $background: map-get($theme, background);
   $background-color: mat-color($background, card);
+  $foreground: map-get($theme, foreground);
 
   table {
     width: 100%;
@@ -14,6 +15,12 @@
 
     &.selected {
       background: mat-color($primary);
+    }
+  }
+
+  .mat-checkbox-checked.mat-warn {
+    .mat-checkbox-background {
+      background-color: mat-color($foreground, text);
     }
   }
 }
