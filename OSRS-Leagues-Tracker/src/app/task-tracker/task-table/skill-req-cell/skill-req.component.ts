@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HiscoreResult } from '../../models/highscore.model';
 import { SkillData, LeagueTask } from '../../models/league-tasks.model';
-import { DataSource } from '@angular/cdk/table';
-
+import { HiscoreService } from '../../services/hiscore.service';
 
 @Component({
   selector: 'skill-req-cell',
@@ -11,14 +10,25 @@ import { DataSource } from '@angular/cdk/table';
 })
 export class SkillReqComponent implements OnInit {
   
-  @Input() hiscore: HiscoreResult;
+  hiscore: HiscoreResult;
   @Input() skills: SkillData;
   pointTotal: number;
 
-  constructor() { }
+  constructor(private hiscoreService: HiscoreService) { 
+    this.hiscoreService.playerHiscore.subscribe(player => this.hiscore = player);
+  }
 
   ngOnInit(): void {
+    
+  }
 
+  skillReq(skill: string, ) {
+    if (!this.skills[skill] || !this.hiscore)
+      return
+    if (this.skills[skill] <= this.hiscore[skill]?.level)
+      return 'meetsReq';
+    else
+      return 'missingReq'
   }
 
 }

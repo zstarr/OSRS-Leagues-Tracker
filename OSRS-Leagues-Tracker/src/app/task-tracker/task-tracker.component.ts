@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HiscoreResult } from './models/highscore.model';
-import { BehaviorSubject } from 'rxjs';
-import { Point } from '@angular/cdk/drag-drop';
+import { HiscoreService } from './services/hiscore.service';
 import { PointService } from './services/points.service';
 
 @Component({
@@ -15,8 +14,9 @@ export class TaskTrackerComponent implements OnInit {
 
   pointTotal: number;
 
-  constructor(private pointService: PointService) {
-    this.pointService.sharedTotal.subscribe(total => this.pointTotal = total)
+  constructor(private pointService: PointService, private hiscoreService: HiscoreService) {
+    this.pointService.sharedTotal.subscribe(total => this.pointTotal = total);
+    this.hiscoreService.playerHiscore.subscribe(player => this.hiscore = player);
    }
 
   ngOnInit(): void {

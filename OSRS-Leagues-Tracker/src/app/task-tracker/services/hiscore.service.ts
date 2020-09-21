@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap, map, catchError } from 'rxjs/operators'
 import { HiscoreResult } from '../models/highscore.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HighscoresService {
+export class HiscoreService {
 
   runeliteURL: string = "https://api.runelite.net/runelite-1.6.26.1";
+  private hiscore = new BehaviorSubject<HiscoreResult>(null);
+  playerHiscore = this.hiscore.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +22,10 @@ export class HighscoresService {
     //     response => console.log(response)
     //   )
     // )
+  }
+
+  updateFoundPlayer(newPlayer: HiscoreResult) {
+    this.hiscore.next(newPlayer);
   }
 
 }
