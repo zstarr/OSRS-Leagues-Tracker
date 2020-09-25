@@ -3,7 +3,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ThemePalette } from '@angular/material/core';
 import { LeagueTask } from '../models/league-tasks.model';
-import { LeagueTaskArray } from '../models/league-tasks.data'
 import { HiscoreResult } from '../models/highscore.model';
 import { PointService } from '../services/points.service';
 
@@ -17,6 +16,7 @@ export class TaskTableComponent implements OnInit {
   
   @Input() hiscore: HiscoreResult;
   @Input() pointsPerTask: number;
+  @Input() leagueTasks: LeagueTask[];
   pointTotal: number;
 
   checkColor: ThemePalette = "warn";
@@ -27,7 +27,7 @@ export class TaskTableComponent implements OnInit {
     'skills',
     'locations',
   ];
-  dataSource = new MatTableDataSource<LeagueTask>(LeagueTaskArray);
+  dataSource;
   selection = new SelectionModel<LeagueTask>(true, []);
 
   constructor(private pointService: PointService) {
@@ -35,6 +35,7 @@ export class TaskTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource<LeagueTask>(this.leagueTasks);
     this.selection.changed.subscribe(
       (a) => {
         this.pointService.nextPointTotal((a.added.length - a.removed.length) * this.pointsPerTask)

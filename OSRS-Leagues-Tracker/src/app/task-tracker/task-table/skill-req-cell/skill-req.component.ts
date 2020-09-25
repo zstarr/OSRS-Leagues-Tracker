@@ -24,10 +24,10 @@ export class SkillReqComponent implements OnInit {
   ngOnInit(): void {    
   }
 
-  skillReq(skill: string, ) {    
+  skillReq(skill: string) {    
     if (!this.skills[skill] || !this.hiscore)
       return;
-    let boost: number = this.isSkillProd ? 12 : 0;    
+    let boost: number = (this.isSkillProd && skill != "overall") ? 12 : 0;    
     if (this.skills[skill] <= this.hiscore[skill]?.level + boost)
       return 'meetsReq';
     else

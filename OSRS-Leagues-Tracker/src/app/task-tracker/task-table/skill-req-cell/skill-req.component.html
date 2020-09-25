@@ -1,4 +1,6 @@
+<div class="skillReqs">
 <span *ngIf="skills.other">{{ skills.other }}</span>
+<div *ngIf="skills.overall > 0" class="skillReq" [ngClass]="skillReq('overall')"><img src="./assets/skill-icons/overall.png" /><span>{{ skills.overall }}</span></div>
 <div *ngIf="skills.attack > 0" class="skillReq" [ngClass]="skillReq('attack')"><img src="./assets/skill-icons/attack.png" /><span>{{ skills.attack }}</span></div>
 <div *ngIf="skills.strength > 0" class="skillReq" [ngClass]="skillReq('strength')"><img src="./assets/skill-icons/strength.png" /><span>{{ skills.strength }}</span></div>
 <div *ngIf="skills.defence > 0" class="skillReq" [ngClass]="skillReq('defence')"><img src="./assets/skill-icons/defence.png" /><span>{{ skills.defence }}</span></div>
@@ -22,4 +24,4 @@
 <div *ngIf="skills.runecraft > 0" class="skillReq" [ngClass]="skillReq('runecraft')"><img src="./assets/skill-icons/runecraft.png" /><span>{{ skills.runecraft }}</span></div>
 <div *ngIf="skills.construction > 0" class="skillReq" [ngClass]="skillReq('construction')"><img src="./assets/skill-icons/construction.png" /><span>{{ skills.construction }}</span></div>
 <div *ngIf="skills.hunter > 0" class="skillReq" [ngClass]="skillReq('hunter')"><img src="./assets/skill-icons/hunter.png" /><span>{{ skills.hunter }}</span></div>
-
+</div>

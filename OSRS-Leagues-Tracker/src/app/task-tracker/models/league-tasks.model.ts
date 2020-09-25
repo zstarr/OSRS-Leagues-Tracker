@@ -30,4 +30,5 @@ export interface SkillData {
     runecraft?: number;
     hunter?: number;
     construction?: number;
+    overall?: number;
 }
