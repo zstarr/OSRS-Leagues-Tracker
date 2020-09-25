@@ -1,4 +1,4 @@
 
 <span *ngIf="skills.other">{{ skills.other }}</span>
-<span *ngIf="skills.attack > 0" [ngClass]="skillReq('attack')"><img src="./assets/skill-icons/attack.png" />{{ skills.attack }}</span>
-<span *ngIf="skills.strength > 0" [ngClass]="skillReq('strength')"><img src="./assets/skill-icons/strength.png" />{{ skills.strength }}</span>
+<div *ngIf="skills.attack > 0" class="skillReq" [ngClass]="skillReq('attack')"><img src="./assets/skill-icons/attack.png" /><span>{{ skills.attack }}</span></div>
+<div *ngIf="skills.strength > 0" class="skillReq" [ngClass]="skillReq('strength')"><img src="./assets/skill-icons/strength.png" /><span>{{ skills.strength }}</span></div>

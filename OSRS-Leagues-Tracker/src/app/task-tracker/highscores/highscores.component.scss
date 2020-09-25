@@ -43,5 +43,14 @@
     }
   }
   
+  mat-slide-toggle {
+    padding-top: 10px;
+  }
+
+  mat-card {
+    width: min-content;
+    border-style: ridge;
+  }
+  
 }
 

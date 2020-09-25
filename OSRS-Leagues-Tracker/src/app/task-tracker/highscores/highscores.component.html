@@ -131,5 +131,15 @@
     >
       Lookup
     </button>
+
+    <mat-slide-toggle
+    *ngIf="hiscore"  
+    [checked]="isSkillProd | async"
+      labelPosition="after"
+      (change)="toggleSkillProd($event.checked)"
+      color="primary"
+      >Skilling Prodigy
+    </mat-slide-toggle>
+
   </div>
 </mat-card>

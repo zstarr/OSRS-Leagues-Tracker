@@ -11,7 +11,7 @@
   }
 
   .mat-row {
-    min-height: 65px;
+    //min-height: 65px;
 
     &.selected {
       background: mat-color($primary);
@@ -22,5 +22,9 @@
     .mat-checkbox-background {
       background-color: mat-color($foreground, text);
     }
+  }
+
+  td {
+    word-wrap: break-word;
   }
 }

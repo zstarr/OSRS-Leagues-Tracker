@@ -4,7 +4,7 @@ import { HiscoreService } from "../services/hiscore.service";
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Observable, observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, observable, of, BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-highscores',
@@ -21,6 +21,8 @@ export class HighscoresComponent implements OnInit {
   mode: ProgressSpinnerMode = 'indeterminate';
   lastUserName: string = null;
 
+  private isSkillProd: Observable<boolean>;
+
   constructor(private hiscoreService: HiscoreService, private formBuilder: FormBuilder) {
     this.hiscoreLookup = this.formBuilder.group({
       userName: []
@@ -30,6 +32,7 @@ export class HighscoresComponent implements OnInit {
    }
 
   async ngOnInit(): Promise<void> {
+    this.isSkillProd = this.hiscoreService.isSkillProd;
   }
 
   async populateHighscores() {
@@ -50,6 +53,10 @@ export class HighscoresComponent implements OnInit {
 
   Number(input: String) {
     return Number(input).toLocaleString("en");
+  }
+
+  toggleSkillProd(checked: boolean) {
+    this.hiscoreService.toggleSkillProd(checked);
   }
 
 }

@@ -1,8 +1,17 @@
-<p>Welcome to task tracker!</p>
-<p>Point total: {{ pointTotal }}</p>
-<br>
-<p>Easy tasks are worth 10 points...</p>
-<div class="container">
-    <app-task-table [pointsPerTask]='10'></app-task-table>
+  <p>Welcome to task tracker!</p>
+  <div class="sticky">
+    <mat-card>
+      <p>Point total: {{ pointTotal }}</p>
+      <p>Points to next tier: 69</p>
+    </mat-card>
     <app-highscores></app-highscores>
+  </div>
+  
+<div class="container">
+  <p>Easy tasks are worth 10 points...</p>
+  <app-task-table [pointsPerTask]="10"></app-task-table>
+  <p>Medium tasks are worth 50 points...</p>
+  <app-task-table [pointsPerTask]="50"></app-task-table>
+  <p>Hard tasks are worth 100 points...</p>
+  <app-task-table [pointsPerTask]="100"></app-task-table>
 </div>

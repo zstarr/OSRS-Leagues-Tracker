@@ -1,9 +1,16 @@
-span {
-    margin-right: 5px;
-}
 .meetsReq {
-    background: green;
+    background: #089408;
 }
 .missingReq {
-    background: red;
+    background: #8e1212;    
+}
+img {
+    vertical-align: middle;
+    margin-right: 2px;
+}
+.skillReq {
+    margin-right: 5px;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 5px;
 }

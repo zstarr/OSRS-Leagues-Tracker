@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SkillReqComponent } from "./task-table/skill-req-cell/skill-req.component";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SkillReqComponent } from "./task-table/skill-req-cell/skill-req.compone
     MatProgressSpinnerModule,    
     MatInputModule,
     MatIconModule,
+    MatSlideToggleModule,
     MatButtonModule,
     HttpClientModule,
     FormsModule,
