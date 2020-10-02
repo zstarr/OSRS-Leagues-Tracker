@@ -2,22 +2,17 @@ app-task-table {
   padding: 5px;
 }
 
-app-highscores {
-  padding: 5px;
-  margin-left: auto;
-
-}
-
 .container {
   display: flex;
   flex-direction: column;
   p {
     margin: 5px;
   }
+  width: 100%;
 }
 
 mat-card {
-  width: max-content;
+  width: auto;
   height: min-content;
   border-style: ridge;
 }
@@ -27,5 +22,21 @@ mat-card {
   z-index: 1;
   top: 0px;
   position: -webkit-sticky;
+  align-self: flex-start;
+}
+
+.right-col {
   display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  padding: 5px;
+  width: 225px;
+}
+
+.page {
+  display: flex;
+}
+
+app-highscores {
+  margin-top: .5rem;
 }

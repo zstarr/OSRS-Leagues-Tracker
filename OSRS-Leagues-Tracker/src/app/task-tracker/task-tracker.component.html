@@ -1,21 +1,21 @@
-  <p>Welcome to task tracker!</p>
-  <div class="sticky">
+<div class="page">
+  <div class="container">
+    <p>Easy tasks are worth 10 points...</p>
+    <app-task-table [pointsPerTask]="10" [leagueTasks]='leagueTaskArrayEasy'></app-task-table>
+    <p>Medium tasks are worth 50 points...</p>
+    <app-task-table [pointsPerTask]="50" [leagueTasks]='leagueTaskArrayMedium'></app-task-table>
+    <p>Hard tasks are worth 100 points...</p>
+    <app-task-table [pointsPerTask]="100" [leagueTasks]='leagueTaskArrayHard'></app-task-table>
+    <p>Elite tasks are worth 250 points...</p>
+    <app-task-table [pointsPerTask]="250" [leagueTasks]='leagueTaskArrayElite'></app-task-table>
+    <p>Master tasks are worth 500 points...</p>
+    <app-task-table [pointsPerTask]="500" [leagueTasks]='leagueTaskArrayMaster'></app-task-table>
+  </div>  
+  <div class="right-col sticky">
     <mat-card>
       <p>Point total: {{ pointTotal }}</p>
       <p>Points to next tier: 69</p>
     </mat-card>
     <app-highscores></app-highscores>
   </div>
-  
-<div class="container">
-  <p>Easy tasks are worth 10 points...</p>
-  <app-task-table [pointsPerTask]="10" [leagueTasks]='leagueTaskArrayEasy'></app-task-table>
-  <p>Medium tasks are worth 50 points...</p>
-  <app-task-table [pointsPerTask]="50" [leagueTasks]='leagueTaskArrayMedium'></app-task-table>
-  <p>Hard tasks are worth 100 points...</p>
-  <app-task-table [pointsPerTask]="100" [leagueTasks]='leagueTaskArrayHard'></app-task-table>
-  <p>Elite tasks are worth 250 points...</p>
-  <app-task-table [pointsPerTask]="250" [leagueTasks]='leagueTaskArrayElite'></app-task-table>
-  <p>Master tasks are worth 500 points...</p>
-  <app-task-table [pointsPerTask]="500" [leagueTasks]='leagueTaskArrayMaster'></app-task-table>
 </div>
