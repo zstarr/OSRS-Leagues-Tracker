@@ -28,6 +28,10 @@ export class TaskTrackerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  pointsToNextTier() {
+    var nextTier = this.pointService.pointTiers.find(x => this.pointTotal < x);
+    return nextTier > 0 ? nextTier - this.pointTotal : 0;
+  }
 
 
 }
