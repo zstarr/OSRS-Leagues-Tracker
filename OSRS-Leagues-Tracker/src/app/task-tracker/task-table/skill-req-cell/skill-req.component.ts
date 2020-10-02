@@ -28,10 +28,8 @@ export class SkillReqComponent implements OnInit {
     if (!this.skills[skill] || !this.hiscore)
       return;
     let boost: number = (this.isSkillProd && skill != "overall") ? 12 : 0;    
-    if (this.skills[skill] <= this.hiscore[skill]?.level + boost)
-      return 'meetsReq';
-    else
-      return 'missingReq';
+    return (this.skills[skill] <= this.hiscore[skill]?.level + boost) ? 'meetsReq' : 'missingReq';
+
   }
 
 }

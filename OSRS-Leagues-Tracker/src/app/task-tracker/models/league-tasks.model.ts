@@ -1,8 +1,9 @@
+import { LeagueLocations } from "./league-locations.model";
 export interface LeagueTask {
     name: string;
     task: string;
     skills: SkillData;
-    locations: string;
+    locations: LeagueLocations[];
 }
 
 export interface SkillData {

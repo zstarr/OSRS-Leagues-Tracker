@@ -66,4 +66,8 @@ export class TaskTableComponent implements OnInit {
       row.task + 1
     }`;
   }
+
+  getTaskLocations(task: LeagueTask) {
+    
+  }
 }
