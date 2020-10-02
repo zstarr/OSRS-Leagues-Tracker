@@ -8,6 +8,5 @@ export enum LeagueLocations {
     Fremennik,
     Tirannwn,
     Asgarnia,
-    Zeah,
-    Other
+    Zeah
 }

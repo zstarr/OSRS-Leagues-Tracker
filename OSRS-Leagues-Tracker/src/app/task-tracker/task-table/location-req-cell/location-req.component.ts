@@ -4,6 +4,7 @@ import { HiscoreResult } from '../../models/highscore.model';
 import { LeagueLocations } from '../../models/league-locations.model';
 import { LeagueTask } from '../../models/league-tasks.model';
 import { HiscoreService } from '../../services/hiscore.service';
+import { LocationService } from '../../services/locations.service';
 
 @Component({
   selector: 'location-req-cell',
@@ -13,20 +14,21 @@ import { HiscoreService } from '../../services/hiscore.service';
 export class LocationReqComponent implements OnInit {
   
   @Input() locations: LeagueLocations[];
+  selectedLocations: LeagueLocations[];
+
   get locationList(): typeof LeagueLocations {
     return LeagueLocations;
   }
 
-  constructor() { 
-
-
-  }
+  constructor(private locationService: LocationService) {
+    this.locationService.sharedLocations.subscribe(locations => this.selectedLocations = locations)
+   }
 
   ngOnInit(): void {    
   }
 
-  locationSelected(location: LeagueLocations) {
-    return this.locations.includes(location) ? 'meetsReq' : 'missingReq';    
+  locationSelected(location: string) {
+    return this.selectedLocations.includes(LeagueLocations[location]) ? 'meetsReq' : 'missingReq';    
   }
   locationInTask(location: LeagueLocations) {    
     return this.locations.includes(location)

@@ -15,10 +15,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SkillReqComponent } from "./task-table/skill-req-cell/skill-req.component";
 import { LocationReqComponent } from "./task-table/location-req-cell/location-req.component";
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { LocationSelectorComponent } from "./location-selector/location-selector.component";
+
 
 
 @NgModule({
-  declarations: [TaskTableComponent, TaskTrackerComponent, HighscoresComponent, SkillReqComponent, LocationReqComponent],
+  declarations: [TaskTableComponent, TaskTrackerComponent, HighscoresComponent, SkillReqComponent, LocationReqComponent, LocationSelectorComponent],
   imports: [
     CommonModule,
     MatCheckboxModule,
