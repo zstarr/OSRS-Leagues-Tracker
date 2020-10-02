@@ -50,6 +50,9 @@
   mat-card {
     width: auto;
     border-style: ridge;
+    mat-card-title {
+      font-size: 20px;
+    }
   }
   
 }

@@ -1,0 +1,6 @@
+<mat-card>
+  <mat-card-title>Locations:</mat-card-title>
+    <mat-checkbox *ngFor="let location of locations" (change)="toggleLocation(location)">
+      {{ location }}
+    </mat-checkbox>
+</mat-card>
