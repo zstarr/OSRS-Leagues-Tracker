@@ -26,9 +26,13 @@ export const LeagueTaskArrayEasy: LeagueTask[] = [
   ];
 
   export const LeagueTaskArrayElite: LeagueTask[] = [
-    { name: "2000 Total Level", task: "Reach a total level of 2000.", skills: { overall: 2000 }, locations: [] }
+    { name: "2000 Total Level", task: "Reach a total level of 2000.", skills: { overall: 2000 }, locations: [] },
+    { name: "Equip an Eternal Slayer Ring", task: "Craft and equip an Eternal slayer ring.", skills: { crafting: 75 }, locations: [] },
+    { name: "Equip an Dragon Hunter Lance", task: "Obtain and equip a Dragon Huntert Lance.", skills: { attack: 70, slayer: 95 }, locations: [] }
   ];
 
   export const LeagueTaskArrayMaster: LeagueTask[] = [
-    { name: "2277 Total Level", task: "Reach a total level of 2277.", skills: { overall: 2277 }, locations: [] }
+    { name: "2277 Total Level", task: "Reach a total level of 2277.", skills: { overall: 2277 }, locations: [] },
+    { name: "Equip a Golden Tench", task: "Equip a Golden tench, caught by aerial fishing on Molch Island.", skills: { hunter: 35, fishing: 43 }, locations: [] },
+    { name: "Equip a Kodai Wand", task: "Obtain and equip a Kodai wand.", skills: { magic: 75 }, locations: [] }
   ];
