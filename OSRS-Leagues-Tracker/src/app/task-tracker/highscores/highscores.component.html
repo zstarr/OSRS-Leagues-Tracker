@@ -3,7 +3,7 @@
   <div>
     <mat-form-field class="name-form-field" [formGroup]="this.hiscoreLookup">
       <mat-label>Username</mat-label>
-      <input matInput type="text" formControlName="userName" maxLength="12" />
+      <input matInput type="text" formControlName="userName" maxLength="12" (keyup.enter)="populateHighscores()" />
     </mat-form-field>
     <div class="wrapper" *ngIf="hiscore">
       <div class="box">
@@ -122,6 +122,7 @@
       <p>{{ lastUserName }} not found...</p>
     </div>
     <button
+      type="submit"
       mat-raised-button
       color="primary"
       (click)="populateHighscores()"
