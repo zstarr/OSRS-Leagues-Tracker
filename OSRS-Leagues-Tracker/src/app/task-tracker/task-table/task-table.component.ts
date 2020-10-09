@@ -5,7 +5,10 @@ import { ThemePalette } from '@angular/material/core';
 import { LeagueTask } from '../models/league-tasks.model';
 import { HiscoreResult } from '../models/highscore.model';
 import { PointService } from '../services/points.service';
-import { TaskTrackerService } from '../services/task-tracker.service'
+import { TaskTrackerService } from '../services/task-tracker.service';
+import { LocationService } from '../services/locations.service';
+import { LeagueLocations } from '../models/league-locations.model';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-task-table',
@@ -13,14 +16,14 @@ import { TaskTrackerService } from '../services/task-tracker.service'
   styleUrls: ['./task-table.component.scss'],
 })
 export class TaskTableComponent implements OnInit {
-  
   @Input() hiscore: HiscoreResult;
   @Input() pointsPerTask: number;
   @Input() leagueTasks: LeagueTask[];
   pointTotal: number;
   selectedTasks: number[] = [];
-
-  checkColor: ThemePalette = "warn";
+  selectedLocations: LeagueLocations[] = [];
+  locationFilter: boolean;
+  checkColor: ThemePalette = 'warn';
   displayedColumns: string[] = [
     'select',
     'name',
@@ -31,24 +34,43 @@ export class TaskTableComponent implements OnInit {
   dataSource;
   selection = new SelectionModel<LeagueTask>(true, []);
 
-  constructor(private pointService: PointService, private taskTrackerService: TaskTrackerService) {
-    this.pointService.sharedTotal.subscribe(total => this.pointTotal = total);
-    this.taskTrackerService.sharedTasks.subscribe(taskIds => this.selectedTasks = taskIds);
-    
+  constructor(
+    private pointService: PointService,
+    private taskTrackerService: TaskTrackerService,
+    private locationService: LocationService
+  ) {
+    this.pointService.sharedTotal.subscribe(
+      (total) => (this.pointTotal = total)
+    );
+    this.taskTrackerService.sharedTasks.subscribe(
+      (taskIds) => (this.selectedTasks = taskIds)
+    );
+    this.locationService.locationFilter.subscribe(
+      (value) => (this.locationFilter = value)
+    );
+    this.locationService.sharedLocations.subscribe(
+      (locations) => (this.selectedLocations = locations)
+    );
   }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<LeagueTask>(this.leagueTasks);
-  
-    this.selection.changed.subscribe(
-      (a) => {
-        a.added?.filter(task => !isNaN(task?.id)).forEach(task => this.taskTrackerService.addTask(task.id));
-        a.removed?.filter(task => !isNaN(task?.id)).forEach(task => this.taskTrackerService.removeTask(task.id));
-        this.pointService.nextPointTotal((a.added.length - a.removed.length) * this.pointsPerTask);
-      }
-    );
 
-    this.selectedTasks.forEach(taskId => this.selection.select(this.leagueTasks.find(task => task.id === taskId)));
+    this.selection.changed.subscribe((a) => {
+      a.added
+        ?.filter((task) => !isNaN(task?.id))
+        .forEach((task) => this.taskTrackerService.addTask(task.id));
+      a.removed
+        ?.filter((task) => !isNaN(task?.id))
+        .forEach((task) => this.taskTrackerService.removeTask(task.id));
+      this.pointService.nextPointTotal(
+        (a.added.length - a.removed.length) * this.pointsPerTask
+      );
+    });
+
+    this.selectedTasks.forEach((taskId) =>
+      this.selection.select(this.leagueTasks.find((task) => task.id === taskId))
+    );
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -73,5 +95,10 @@ export class TaskTableComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
       row.task + 1
     }`;
+  }
+
+  rowLocation(row: LeagueTask): boolean {
+    
+    return this.locationFilter;
   }
 }

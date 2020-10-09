@@ -11,7 +11,6 @@ export class HiscoreService {
   private hiscore = new BehaviorSubject<HiscoreResult>(null);
   playerHiscore = this.hiscore.asObservable();
 
-  private _isSkillProd: Subject<boolean> = null;
   isSkillProd = new BehaviorSubject<boolean>(false);
   public skillProdValues: string[] = [
     'cooking',

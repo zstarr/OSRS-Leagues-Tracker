@@ -16,6 +16,10 @@
     &.selected {
       background: mat-color($primary);
     }
+
+    &.hideRow {
+      display: none;
+    }
   }
 
   .mat-checkbox-checked.mat-warn {

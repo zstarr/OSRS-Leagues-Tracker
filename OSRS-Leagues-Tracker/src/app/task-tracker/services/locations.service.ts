@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { LeagueLocations } from "../models/league-locations.model";
 
 @Injectable({ providedIn: 'root' })
 export class LocationService {
   private selectedLocations = new BehaviorSubject<LeagueLocations[]>([]);
   sharedLocations = this.selectedLocations.asObservable();
-
+  locationFilter = new BehaviorSubject<boolean>(false);
   constructor() {}
 
   toggleLocation(location: LeagueLocations) {
@@ -16,5 +16,9 @@ export class LocationService {
     else
         locations.push(location)
     this.selectedLocations.next(locations);
+  }
+
+  toggleFilter(checked: boolean) {
+    this.locationFilter.next(checked);
   }
 }
