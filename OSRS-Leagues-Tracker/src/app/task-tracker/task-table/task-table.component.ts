@@ -5,7 +5,7 @@ import { ThemePalette } from '@angular/material/core';
 import { LeagueTask } from '../models/league-tasks.model';
 import { HiscoreResult } from '../models/highscore.model';
 import { PointService } from '../services/points.service';
-
+import { TaskTrackerService } from '../services/task-tracker.service'
 
 @Component({
   selector: 'app-task-table',
@@ -18,6 +18,7 @@ export class TaskTableComponent implements OnInit {
   @Input() pointsPerTask: number;
   @Input() leagueTasks: LeagueTask[];
   pointTotal: number;
+  selectedTasks: number[] = [];
 
   checkColor: ThemePalette = "warn";
   displayedColumns: string[] = [
@@ -30,17 +31,25 @@ export class TaskTableComponent implements OnInit {
   dataSource;
   selection = new SelectionModel<LeagueTask>(true, []);
 
-  constructor(private pointService: PointService) {
+  constructor(private pointService: PointService, private taskTrackerService: TaskTrackerService) {
     this.pointService.sharedTotal.subscribe(total => this.pointTotal = total);
+    this.taskTrackerService.sharedTasks.subscribe(taskIds => this.selectedTasks = taskIds);
+    
   }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<LeagueTask>(this.leagueTasks);
+  
     this.selection.changed.subscribe(
       (a) => {
-        this.pointService.nextPointTotal((a.added.length - a.removed.length) * this.pointsPerTask)
+        console.log(a)
+        a.added?.filter(task => !isNaN(task?.id)).forEach(task => this.taskTrackerService.addTask(task.id));
+        a.removed?.filter(task => !isNaN(task?.id)).forEach(task => this.taskTrackerService.removeTask(task.id));
+        this.pointService.nextPointTotal((a.added.length - a.removed.length) * this.pointsPerTask);
       }
     );
+
+    this.selectedTasks.forEach(taskId => this.selection.select(this.leagueTasks.find(task => task.id === taskId)));
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -65,9 +74,5 @@ export class TaskTableComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
       row.task + 1
     }`;
-  }
-
-  getTaskLocations(task: LeagueTask) {
-    
   }
 }

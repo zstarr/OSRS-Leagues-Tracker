@@ -1,5 +1,6 @@
 import { LeagueLocations } from "./league-locations.model";
 export interface LeagueTask {
+    id: number;
     name: string;
     task: string;
     skills: SkillData;
