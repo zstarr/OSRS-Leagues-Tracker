@@ -42,7 +42,6 @@ export class TaskTableComponent implements OnInit {
   
     this.selection.changed.subscribe(
       (a) => {
-        console.log(a)
         a.added?.filter(task => !isNaN(task?.id)).forEach(task => this.taskTrackerService.addTask(task.id));
         a.removed?.filter(task => !isNaN(task?.id)).forEach(task => this.taskTrackerService.removeTask(task.id));
         this.pointService.nextPointTotal((a.added.length - a.removed.length) * this.pointsPerTask);

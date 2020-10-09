@@ -14,7 +14,7 @@ export class SkillReqComponent implements OnInit {
   hiscore: HiscoreResult;
   @Input() skills: SkillData;
   pointTotal: number;
-  isSkillProd: boolean
+  isSkillProd: boolean  
 
   constructor(private hiscoreService: HiscoreService) { 
     this.hiscoreService.playerHiscore.subscribe(player => this.hiscore = player);
@@ -27,7 +27,7 @@ export class SkillReqComponent implements OnInit {
   skillReq(skill: string) {    
     if (!this.skills[skill] || !this.hiscore)
       return;
-    let boost: number = (this.isSkillProd && skill != "overall") ? 12 : 0;    
+    let boost: number = (this.isSkillProd && this.hiscoreService.skillProdValues.find(skillName => skillName === skill)) ? 12 : 0;    
     return (this.skills[skill] <= this.hiscore[skill]?.level + boost) ? 'meetsReq' : 'missingReq';
 
   }
