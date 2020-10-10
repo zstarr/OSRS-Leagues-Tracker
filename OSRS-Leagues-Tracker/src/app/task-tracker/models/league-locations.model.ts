@@ -1,12 +1,12 @@
 export enum LeagueLocations {
-    Misthalin,
-    Karamja,
-    Morytania,
-    Desert,
-    Wilderness,
-    Kandarin,
-    Fremennik,
-    Tirannwn,
     Asgarnia,
+    Desert,
+    Fremennik,
+    Kandarin,
+    Karamja,
+    Misthalin,    
+    Morytania,
+    Tirannwn,    
+    Wilderness, 
     Zeah
 }

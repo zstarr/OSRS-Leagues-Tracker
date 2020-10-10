@@ -98,7 +98,11 @@ export class TaskTableComponent implements OnInit {
   }
 
   rowLocation(row: LeagueTask): boolean {
+    //console.log('location ' + LeagueLocations[row.location] + ' selected: ' + this.selectedLocations)
     
+    if ( row.location in this.selectedLocations) {
+      //console.log('hi')
+    }
     return this.locationFilter;
   }
 }

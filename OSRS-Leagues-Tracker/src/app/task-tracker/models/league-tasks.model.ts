@@ -4,7 +4,7 @@ export interface LeagueTask {
     name: string;
     task: string;
     skills: SkillData;
-    locations: LeagueLocations[];
+    location: LeagueLocations;
 }
 
 export interface SkillData {

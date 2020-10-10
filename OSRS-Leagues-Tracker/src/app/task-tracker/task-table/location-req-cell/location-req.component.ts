@@ -13,7 +13,7 @@ import { LocationService } from '../../services/locations.service';
 })
 export class LocationReqComponent implements OnInit {
   
-  @Input() locations: LeagueLocations[];
+  @Input() location: LeagueLocations;
   selectedLocations: LeagueLocations[];
 
   get locationList(): typeof LeagueLocations {
@@ -31,6 +31,6 @@ export class LocationReqComponent implements OnInit {
     return this.selectedLocations.includes(LeagueLocations[location]) ? 'meetsReq' : 'missingReq';    
   }
   locationInTask(location: LeagueLocations) {    
-    return this.locations.includes(location)
+    return this.location === location
   }
 }
