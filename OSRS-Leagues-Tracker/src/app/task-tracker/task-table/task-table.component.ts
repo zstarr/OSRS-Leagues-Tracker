@@ -45,17 +45,30 @@ export class TaskTableComponent implements OnInit {
     this.taskTrackerService.sharedTasks.subscribe(
       (taskIds) => (this.selectedTasks = taskIds)
     );
-    this.locationService.locationFilter.subscribe(
-      (value) => (this.locationFilter = value)
-    );
-    this.locationService.sharedLocations.subscribe(
-      (locations) => (this.selectedLocations = locations)
-    );
   }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<LeagueTask>(this.leagueTasks);
 
+    this.dataSource.filterPredicate = (task: LeagueTask, filter: string) => {
+      var pass: boolean = false;
+      if (!this.locationFilter) return true;
+      const keys = filter.split(',');
+      keys.forEach((key: string) => {
+        if (LeagueLocations[task.location] === key) {
+          pass = true;
+        }
+      });
+      return pass;
+    };
+    this.locationService.sharedLocations.subscribe((locations) => {
+      this.selectedLocations = locations;
+      this.dataSource.filter = this.selectedLocations.toString();
+    });
+    this.locationService.locationFilter.subscribe((value) => {
+      this.locationFilter = value;
+      this.dataSource.filter = this.selectedLocations.toString();
+    });
     this.selection.changed.subscribe((a) => {
       a.added
         ?.filter((task) => !isNaN(task?.id))
@@ -70,7 +83,7 @@ export class TaskTableComponent implements OnInit {
 
     this.selectedTasks.forEach((taskId) =>
       this.selection.select(this.leagueTasks.find((task) => task.id === taskId))
-    );
+    );    
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -97,12 +110,4 @@ export class TaskTableComponent implements OnInit {
     }`;
   }
 
-  rowLocation(row: LeagueTask): boolean {
-    //console.log('location ' + LeagueLocations[row.location] + ' selected: ' + this.selectedLocations)
-    
-    if ( row.location in this.selectedLocations) {
-      //console.log('hi')
-    }
-    return this.locationFilter;
-  }
 }
