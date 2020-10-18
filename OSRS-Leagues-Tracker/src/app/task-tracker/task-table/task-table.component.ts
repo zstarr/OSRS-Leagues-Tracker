@@ -76,6 +76,7 @@ export class TaskTableComponent implements OnInit {
       a.removed
         ?.filter((task) => !isNaN(task?.id))
         .forEach((task) => this.taskTrackerService.removeTask(task.id));
+      if (a.added[0] === undefined && a.removed[0] === undefined) return;
       this.pointService.nextPointTotal(
         (a.added.length - a.removed.length) * this.pointsPerTask
       );
