@@ -28,7 +28,7 @@ export class LocationReqComponent implements OnInit {
   }
 
   locationSelected(location: string) {
-    return this.selectedLocations.includes(LeagueLocations[location]) ? 'meetsReq' : 'missingReq';    
+    return this.selectedLocations.includes(parseInt(location)) ? 'meetsReq' : 'missingReq';    
   }
   locationInTask(location: LeagueLocations) {    
     return this.location === location
