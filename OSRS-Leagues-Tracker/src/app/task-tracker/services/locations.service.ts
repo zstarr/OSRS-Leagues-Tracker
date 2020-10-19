@@ -6,7 +6,10 @@ import { LeagueLocations } from "../models/league-locations.model";
 export class LocationService {
   private selectedLocations = new BehaviorSubject<LeagueLocations[]>([]);
   sharedLocations = this.selectedLocations.asObservable();
+
   locationFilter = new BehaviorSubject<boolean>(false);
+  showNullLocations = new BehaviorSubject<boolean>(false);
+
   constructor() {}
 
   toggleLocation(location: LeagueLocations) {
@@ -20,5 +23,9 @@ export class LocationService {
 
   toggleFilter(checked: boolean) {
     this.locationFilter.next(checked);
+  }
+
+  toggleNullLocations(checked: boolean) {
+    this.showNullLocations.next(checked);
   }
 }

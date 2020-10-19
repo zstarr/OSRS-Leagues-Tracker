@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>Locations:</mat-card-title>
-    <mat-checkbox #locationCheckboxes *ngFor="let location of locations" (change)="toggleLocation(location)">
+    <mat-checkbox #locationCheckboxes *ngFor="let location of locations" (change)="toggleLocation(location.toString())">
       {{ location }}
     </mat-checkbox>
     <mat-slide-toggle 
@@ -10,4 +10,12 @@
       color="primary"
       >Filter unselected
     </mat-slide-toggle>
+    <mat-slide-toggle 
+    [checked]="showNullLocations | async"
+      labelPosition="after"
+      (change)="toggleNullLocations($event.checked)"
+      color="primary"
+      >Hide non-area specific
+    </mat-slide-toggle>
+    <p style="margin-top: 10px;">If the filters bug out, just refresh the page. Task selections are cached.</p>
 </mat-card>

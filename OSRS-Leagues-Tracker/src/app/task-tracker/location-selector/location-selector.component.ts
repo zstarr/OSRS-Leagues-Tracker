@@ -13,6 +13,7 @@ export class LocationSelectorComponent implements OnInit, AfterViewInit {
   locations: any[] = [];
   selectedLocations: LeagueLocations[];
   isLocationFilter: Observable<boolean>;
+  showNullLocations: Observable<boolean>;
 
 
   @ViewChildren('locationCheckboxes') private checkboxesMultiple: QueryList<any>;
@@ -29,6 +30,7 @@ export class LocationSelectorComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.locations = Object.keys(this.locations).map(k => this.locations[k]).sort();
     this.isLocationFilter = this.locationService.locationFilter;
+    this.showNullLocations = this.locationService.showNullLocations;
   }
 
   ngAfterViewInit() {
@@ -40,12 +42,15 @@ export class LocationSelectorComponent implements OnInit, AfterViewInit {
     this.cdr.detectChanges()
   }
 
-  toggleLocation(location: LeagueLocations) {
-    this.locationService.toggleLocation(location);
+  toggleLocation(location: string) {
+    this.locationService.toggleLocation(LeagueLocations[location]);
   }
 
   toggleLocationFilter(checked: boolean) {
     this.locationService.toggleFilter(checked);
+  }
 
+  toggleNullLocations(checked: boolean) {
+    this.locationService.toggleNullLocations(checked);
   }
 }

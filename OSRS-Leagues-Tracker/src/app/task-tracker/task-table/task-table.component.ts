@@ -9,6 +9,7 @@ import { TaskTrackerService } from '../services/task-tracker.service';
 import { LocationService } from '../services/locations.service';
 import { LeagueLocations } from '../models/league-locations.model';
 import { stringify } from '@angular/compiler/src/util';
+import { faTheRedYeti } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-task-table',
@@ -23,6 +24,7 @@ export class TaskTableComponent implements OnInit {
   selectedTasks: number[] = [];
   selectedLocations: LeagueLocations[] = [];
   locationFilter: boolean;
+  nullLocationFilter: boolean;
   checkColor: ThemePalette = 'warn';
   displayedColumns: string[] = [
     'select',
@@ -51,16 +53,22 @@ export class TaskTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource<LeagueTask>(this.leagueTasks);
 
     this.dataSource.filterPredicate = (task: LeagueTask, filter: string) => {
-      var pass: boolean = false;
-      if (!this.locationFilter) return true;
-      const keys = filter.split(',');
-      keys.forEach((key: string) => {
-        if (LeagueLocations[task.location] === key) {
-          pass = true;
-        }
-      });
+      var pass = false;
+      if (this.locationFilter && this.nullLocationFilter) {
+        pass = !this.isRegionNull(task) && this.isTaskRegionSelected(task, filter)
+      }
+      else if (this.locationFilter) {
+        pass = this.isTaskRegionSelected(task, filter) || this.isRegionNull(task);
+      }
+      else if (this.nullLocationFilter) {
+        pass = !this.isRegionNull(task);
+      }
+      else {
+        pass = true;
+      };
       return pass;
     };
+
     this.locationService.sharedLocations.subscribe((locations) => {
       this.selectedLocations = locations;
       this.dataSource.filter = this.selectedLocations.toString();
@@ -69,6 +77,12 @@ export class TaskTableComponent implements OnInit {
       this.locationFilter = value;
       this.dataSource.filter = this.selectedLocations.toString();
     });
+
+    this.locationService.showNullLocations.subscribe((value) => {
+      this.nullLocationFilter = value;
+      this.dataSource.filter = this.selectedLocations.toString();
+    });
+
     this.selection.changed.subscribe((a) => {
       a.added
         ?.filter((task) => !isNaN(task?.id))
@@ -84,7 +98,24 @@ export class TaskTableComponent implements OnInit {
 
     this.selectedTasks.forEach((taskId) =>
       this.selection.select(this.leagueTasks.find((task) => task.id === taskId))
-    );    
+    );
+  }
+
+  isRegionNull(task: LeagueTask): boolean {
+    return task.location === null ? true : false;
+  }
+
+  isTaskRegionSelected(task: LeagueTask, regions: string): boolean {
+    if (!task.location) return false;
+    var found = false;
+    const keys = regions.split(',');
+    if (keys)
+      keys.forEach((key: string) => {
+        if (task.location == parseInt(key)) {
+          found = true;
+        }
+      });
+    return found;
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -110,5 +141,4 @@ export class TaskTableComponent implements OnInit {
       row.task + 1
     }`;
   }
-
 }
