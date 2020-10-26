@@ -1,4 +1,5 @@
 export enum LeagueLocations {
+    Test,
     Asgarnia,
     Desert,
     Fremennik,

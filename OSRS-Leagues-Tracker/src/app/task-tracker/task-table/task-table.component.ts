@@ -55,10 +55,10 @@ export class TaskTableComponent implements OnInit {
     this.dataSource.filterPredicate = (task: LeagueTask, filter: string) => {
       var pass = false;
       if (this.locationFilter && this.nullLocationFilter) {
-        pass = !this.isRegionNull(task) && this.isTaskRegionSelected(task, filter)
+        pass = !this.isRegionNull(task) && this.isTaskRegionSelected(task, this.selectedLocations.toString())
       }
       else if (this.locationFilter) {
-        pass = this.isTaskRegionSelected(task, filter) || this.isRegionNull(task);
+        pass = this.isTaskRegionSelected(task, this.selectedLocations.toString()) || this.isRegionNull(task);
       }
       else if (this.nullLocationFilter) {
         pass = !this.isRegionNull(task);
@@ -71,16 +71,16 @@ export class TaskTableComponent implements OnInit {
 
     this.locationService.sharedLocations.subscribe((locations) => {
       this.selectedLocations = locations;
-      this.dataSource.filter = this.selectedLocations.toString();
+      this.dataSource.filter = 'a';
     });
     this.locationService.locationFilter.subscribe((value) => {
       this.locationFilter = value;
-      this.dataSource.filter = this.selectedLocations.toString();
+      this.dataSource.filter = 'a';
     });
 
     this.locationService.showNullLocations.subscribe((value) => {
       this.nullLocationFilter = value;
-      this.dataSource.filter = this.selectedLocations.toString();
+      this.dataSource.filter = 'a';
     });
 
     this.selection.changed.subscribe((a) => {
@@ -106,11 +106,13 @@ export class TaskTableComponent implements OnInit {
   }
 
   isTaskRegionSelected(task: LeagueTask, regions: string): boolean {
+
     if (!task.location) return false;
     var found = false;
     const keys = regions.split(',');
     if (keys)
       keys.forEach((key: string) => {
+        
         if (task.location == parseInt(key)) {
           found = true;
         }

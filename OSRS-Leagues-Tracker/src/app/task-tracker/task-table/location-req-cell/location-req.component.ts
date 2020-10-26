@@ -1,9 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HiscoreResult } from '../../models/highscore.model';
 import { LeagueLocations } from '../../models/league-locations.model';
-import { LeagueTask } from '../../models/league-tasks.model';
-import { HiscoreService } from '../../services/hiscore.service';
 import { LocationService } from '../../services/locations.service';
 
 @Component({
