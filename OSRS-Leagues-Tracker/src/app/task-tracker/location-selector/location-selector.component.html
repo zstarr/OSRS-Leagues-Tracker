@@ -1,8 +1,11 @@
 <mat-card>
   <mat-card-title>Locations:</mat-card-title>
-    <mat-checkbox #locationCheckboxes *ngFor="let location of locations" (change)="toggleLocation(location.toString())">
-      {{ location }}
-    </mat-checkbox>
+  <div *ngFor="let location of locations">
+    <mat-checkbox #locationCheckboxes *ngIf="location !== 'Test'" (change)="toggleLocation(location.toString())" >
+    {{ location }}
+  </mat-checkbox>
+</div>
+    
     <mat-slide-toggle 
     [checked]="isLocationFilter | async"
       labelPosition="after"
